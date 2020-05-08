@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 
 class AirportController extends Controller
 {
-    public function index() {
-        $airpots = json_decode(file_get_contents('data/aeroportos.json'));
+    private $airports;
 
-        return response()->json(['data' => $airpots]);
+    public function __construct() {
+        $this->airports = json_decode(file_get_contents('data/aeroportos.json'));
+    }
+
+    public function index() {
+        return response()->json(['data' => $this->airports]);
     }
 }
