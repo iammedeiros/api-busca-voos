@@ -18,4 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/airports', 'Api\AirportController@index')->name('airports');
+Route::get('/aeroportos', 'Api\AirportController@index');
+Route::post('/voos-disponiveis', 'Api\FlightController@index');
