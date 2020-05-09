@@ -38,10 +38,31 @@ class FlightController extends Controller
         fclose($handle);
         
         //junta os dados do csv e do json e devolve como retorno da função
-        return array_merge($data, json_decode(file_get_contents('data/99planes.json')));
+        return array_merge($data, json_decode(file_get_contents('data/99planes.json'), true));
+    }
+
+    private function getFlight(Request $request) {
+        $flight = null;
+        $origin = $request->input('origem');
+        $destiny = $request->input('destino');
+        $date = $request->input('data');
+
+        foreach ($this->flights as $item) {
+            if ($item["origem"] === $origin && $item["destino"] === $destiny 
+                && $item["data_saida"] === $date) {
+                    $flight = $item;
+            }
+        }
+
+        return $flight;
     }
 
     public function index(Request $request) {
-        return response()->json(['data' => $this->flights, 'lines' => count($this->flights)]);
+        $result = self::getFlight($request);
+
+        if ($result)
+            return response()->json(['data' => $result]);
+        else
+            return response()->json(['data' => 'Voo não encontrado!']);
     }
 }
