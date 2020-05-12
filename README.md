@@ -15,8 +15,24 @@
 
 <ul>
     <li><strong>GET</strong>: http://127.0.0.1:8000/api/aeroportos </li>
-    <li><strong>POST</strong>: http://127.0.0.1:8000/api/voos-disponiveis </li>
+    <li><strong>POST</strong>: http://127.0.0.1:8000/api/voos-disponiveis
+        <p>
+        <code>
+        {
+            <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;"from": "PLU", 
+            "to": "BSB", 
+            "date": "2019-02-18"
+            </p>    
+        }
+        </code>
+        </p>    
+    </li>    
 </ul>
+
+
+
+
 
 
 
